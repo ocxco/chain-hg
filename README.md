@@ -2,7 +2,9 @@
 
 #### chain-hg
 > A theme for [Oh My Fish][omf-link].
-> It's a copy for chain
+
+> It's a copy from chain
+
 > Add prompt for mercurial, [hg prompt][hg-prompt] is required
 
 [![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE)
@@ -18,23 +20,16 @@
 $ omf install chain-hg
 ```
 
-
-## Features
-
-* Lorem ipsum dolor sit amet.
-* Consectetur adipisicing elit.
-
-
 ## Screenshot
 
 <p align="center">
-<img src="{{SCREENSHOT_URL}}">
+<img src="https://raw.githubusercontent.com/ocxco/chain-hg/master/screenshot.png">
 </p>
 
 
 # License
 
-[MIT][mit] © [xuechaoc][author] et [al][contributors]
+[MIT][mit] © [ocxco][author] et [al][contributors]
 
 
 [mit]:            https://opensource.org/licenses/MIT
@@ -42,5 +37,6 @@ $ omf install chain-hg
 [contributors]:   https://github.com/ocxco/theme-chain-hg/graphs/contributors
 [omf-link]:       https://www.github.com/oh-my-fish/oh-my-fish
 [hg-prompt]:      https://www.github.com/qqshfox/hg-prompt
+[screenshot]:     https://raw.githubusercontent.com/ocxco/chain-hg/master/screenshot.png
 
 [license-badge]:  https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square
