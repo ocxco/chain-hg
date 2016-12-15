@@ -53,16 +53,16 @@ function __chain_hg_state
 end
 
 function __chain_prompt_hg
-    if test (__chain_git_branch_name)
-        set -l hg_branch (__chain_hg_branch_name)
-        set -l hg_stats (__chain_hg_state)
-        __chain_prompt_segment blue "$chain_git_branch_glyph $hg_branch"
-        if [ "$state" = "!" ]
-            __chain_prompt_segment red "$state"
-        else if [ "$state" = "?" ]
-            __chain_prompt_segment white "$state"
-        else
-            __chain_prompt_segment yellow "$state"
+    if command hg id >/dev/null 2>&1
+        if command hg prompt >/dev/null 2>&1
+            set -l hg_branch (__chain_hg_branch_name)
+            set -l hg_stats (__chain_hg_state)
+            __chain_prompt_segment blue "$chain_git_branch_glyph $hg_branch"
+            if [ "$state" = "!" ]
+                __chain_prompt_segment red "$state"
+            else if [ "$state" = "?" ]
+                __chain_prompt_segment white "$state"
+            end
         end
     end
 end
