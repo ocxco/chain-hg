@@ -2,16 +2,32 @@
 set -q chain_prompt_glyph
   or set -g chain_prompt_glyph ">"
 set -q chain_git_branch_glyph
-  or set -g chain_git_branch_glyph "⎇"
+  or set -g chain_git_branch_glyph "git"
+set -q chain_hg_branch_glyph
+  or set -g chain_hg_branch_glyph "hg"
 set -q chain_git_dirty_glyph
   or set -g chain_git_dirty_glyph "±"
 set -q chain_su_glyph
   or set -g chain_su_glyph "⚡"
 
 function __chain_prompt_segment
-  set_color $argv[1]
-  echo -n -s "[" $argv[2..-1] "]─"
-  set_color normal
+   set -l counts (count $argv)
+   set_color $argv[1]
+   echo -n -s "[" $argv[2]
+   if [ $counts -eq 6 ]
+       set_color $argv[3]
+       echo -n -s $argv[4]
+       set_color $argv[5]
+       echo -n -s $argv[6]
+   end
+   if [ $counts -eq 4 ]
+       set_color $argv[3]
+       echo -n -s $argv[4]
+   end
+   set_color $argv[1]
+   echo -n -s "]"
+   set_color normal
+   echo -n -s "─"
 end
 
 function __chain_git_branch_name
@@ -36,8 +52,7 @@ end
 function __chain_prompt_git
   if test (__chain_git_branch_name)
     set -l git_branch (__chain_git_branch_name)
-    __chain_prompt_segment blue "$chain_git_branch_glyph $git_branch"
-
+    __chain_prompt_segment green "$chain_git_branch_glyph" normal "-" blue "$git_branch"
     if test (__chain_is_git_dirty)
       __chain_prompt_segment yellow $chain_git_dirty_glyph
     end
@@ -57,7 +72,7 @@ function __chain_prompt_hg
         if command hg prompt >/dev/null 2>&1
             set -l hg_branch (__chain_hg_branch_name)
             set -l hg_stats (__chain_hg_state)
-            __chain_prompt_segment blue "$chain_git_branch_glyph $hg_branch"
+            __chain_prompt_segment green "hg" normal "-" blue "$hg_branch"
             if [ "$state" = "!" ]
                 __chain_prompt_segment red "$state"
             else if [ "$state" = "?" ]
