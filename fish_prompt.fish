@@ -72,11 +72,11 @@ function __chain_prompt_hg
         if command hg prompt >/dev/null 2>&1
             set -l hg_branch (__chain_hg_branch_name)
             set -l hg_stats (__chain_hg_state)
-            __chain_prompt_segment green "hg" normal "-" blue "$hg_branch"
-            if [ "$state" = "!" ]
-                __chain_prompt_segment red "$state"
-            else if [ "$state" = "?" ]
-                __chain_prompt_segment white "$state"
+            if [ "$hg_stats" = "!" ]
+                __chain_prompt_segment green "hg" normal "-" blue "$hg_branch"
+                __chain_prompt_segment  red "$hg_stats"
+            else
+                __chain_prompt_segment green "hg" normal "-" blue "$hg_branch"
             end
         end
     end
